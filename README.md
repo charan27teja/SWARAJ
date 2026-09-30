@@ -2,16 +2,17 @@
 
 **Smart India Hackathon 2026** · Problem Statement SIH26123 (Bharat Electronics Limited)
 
-A production-grade decentralised coordination and collision-avoidance framework for autonomous mobile robots (AMRs) in warehouse environments. SWARAJ enables **5 autonomous mobile robots** to coordinate peer-to-peer with zero central authority, achieving safe and efficient task execution through distributed consensus algorithms.
+A prototype decentralised coordination and collision-avoidance framework for autonomous mobile robots (AMRs) in warehouse environments. SWARAJ enables **5 autonomous mobile robots** to coordinate peer-to-peer with zero central authority, achieving safe and efficient task execution through distributed consensus algorithms.
 
 ## Key Features
 
 - **Peer-to-Peer Coordination**: Each robot runs identical agent code; no central server, coordinator, or global planner
-- **Zero Collisions**: Proven collision-free movement through ORCA reciprocal collision avoidance + lidar safety verification
+- **Zero Collisions**: 0 robot–robot collisions in all 40 benchmark runs, using ORCA reciprocal avoidance plus an obstacle-scan safety stop
 - **Deadlock Resolution**: Distributed cycle detection and priority-based yield strategy using wait-for graphs
 - **Battery-Aware Task Allocation**: CBBA-based auction with feasibility constraints and orphan re-auctioning
 - **Adaptive Path Planning**: Space-time reservations (SIPP) with dynamic blockage events and D* Lite replanning
-- **Production Dashboard**: Real-time monitoring with live positions, lock states, alerts, and performance metrics
+- **Monitoring Dashboard**: Real-time monitoring with live positions, lock states, alerts, and performance metrics
+- **Less Waiting at Choke Points**: 1.0–2.0 s mean wait at narrow aisles vs 3.7–5.0 s for centralised stop-and-wait
 - **Fault Resilience**: Network partitions, node failures, and dead zones handled gracefully
 
 ## Architecture
@@ -154,15 +155,15 @@ systems on identical seeds):**
 ## Deploy the demo (static replay site, no backend)
 
 Judges can watch **recorded runs of the real system** in the same dashboard from a public link.
-Four 5-robot runs (`demo`, `circular_wait`, `blockage`, `node_loss`, ~75–90 s each, ~100 kB each)
-are recorded by the passive bridge (`--record`) into `dashboard/public/replays/`. Off localhost —
-or with `?replay=<id>` — the dashboard plays them back (scenario dropdown, play/pause, 1×/2×/4×,
-progress slider, **REPLAY** badge). On localhost, live mode is unchanged.
+The site opens in **Demo mode by default**, showing recorded 5-robot runs (`demo`, `circular_wait`,
+`blockage`, `node_loss`, ~75–90 s each, ~100 kB each). These are recorded by the passive bridge
+(`--record`) into `dashboard/public/replays/`. The badge shows **PEER-TO-PEER** (demo mode) or **LIVE**
+(when connected to the real bridge). Modes are switchable anytime from the Simulation options.
 
 ```bat
 cd dashboard
 npm run build
-npx vite preview                 & rem http://localhost:4173/?replay=demo  (no Python needed)
+npx vite preview                 & rem http://localhost:4173  (no Python needed)
 ```
 
 Deploy to Vercel: import the repo with **Root Directory = `dashboard`** (settings come from
