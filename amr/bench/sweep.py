@@ -51,7 +51,7 @@ def main(argv=None):
     ap.add_argument("--faults", default="none,node_loss")
     ap.add_argument("--seeds", type=int, default=5)
     ap.add_argument("--seed-offset", type=int, default=1)
-    ap.add_argument("--systems", default="ours,b0")
+    ap.add_argument("--systems", default="ours,b0,b1")
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument("--out", default=str(ROOT / "runs" / "bench" / "results.csv"))
     ap.add_argument("--quick", action="store_true", help="2 seeds only")

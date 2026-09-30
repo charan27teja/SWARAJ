@@ -145,6 +145,13 @@ class FastSim:
             self.bus.ids.append(CENTRAL)
             self.bus.eps[CENTRAL] = ReliableEndpoint(CENTRAL)
             self.bus.q[CENTRAL] = []
+        elif system == "b1":
+            from amr.baseline.b1 import B1Central, B1Robot, CENTRAL
+            self.central = B1Central(gm, cfg, ids, scenario.tasks, seed=self.seed)
+            self.agents = {r: B1Robot(r, gm, cfg) for r in ids}
+            self.bus.ids.append(CENTRAL)
+            self.bus.eps[CENTRAL] = ReliableEndpoint(CENTRAL)
+            self.bus.q[CENTRAL] = []
         else:
             raise ValueError(system)
         self.events = sorted(
