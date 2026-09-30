@@ -131,7 +131,7 @@ export function Sidebar(p: Props) {
         <div className="space-y-0.5">
           <Switch label="Planned paths" on={p.toggles.paths} onClick={() => p.setToggles({ ...p.toggles, paths: !p.toggles.paths })} />
           <Switch label="Safety circles" on={p.toggles.safety} onClick={() => p.setToggles({ ...p.toggles, safety: !p.toggles.safety })} />
-          <Switch label="Lidar rays" on={p.toggles.lidar} onClick={() => p.setToggles({ ...p.toggles, lidar: !p.toggles.lidar })} />
+          <Switch label="Obstacle scan" on={p.toggles.lidar} onClick={() => p.setToggles({ ...p.toggles, lidar: !p.toggles.lidar })} />
           <Switch label="Lock tags" on={p.toggles.tags} onClick={() => p.setToggles({ ...p.toggles, tags: !p.toggles.tags })} />
           <Switch label="Robot labels" on={p.toggles.labels} onClick={() => p.setToggles({ ...p.toggles, labels: !p.toggles.labels })} />
         </div>

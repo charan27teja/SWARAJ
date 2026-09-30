@@ -302,7 +302,7 @@ export function MapView(props: Props) {
                       strokeDasharray={r.mode === "waiting" ? "0.25 0.18" : undefined}
                       opacity={selected == null ? 0.65 : selected === r.id ? 1 : 0.12} />
           ))}
-          {/* lidar rays (world feed) */}
+          {/* obstacle scan rays (world feed) */}
           {toggles.lidar && state?.lidar && robots.map((r) => {
             const rays = state.lidar?.[String(r.id)];
             if (!rays || r.stale) return null;
