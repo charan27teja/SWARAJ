@@ -136,7 +136,6 @@ export default function App() {
 
   const disconnected = status !== "live" && status !== "replay";
   const preStart = !!r && !r.started;        // replay home page: first frame, dimmed, Start card
-  const item = r?.list.find((i) => i.id === r.id);
   const nextScenario = () => {
     if (!r || !r.list.length) return;
     const i = r.list.findIndex((x) => x.id === r.id);
@@ -168,14 +167,19 @@ export default function App() {
               )}
               {preStart && r && (
                 <div className="absolute inset-0 top-11 z-20 grid place-items-center p-6">
-                  <div className="w-[min(440px,92%)] rounded-[var(--radius-card)] border border-line bg-panel p-6 text-center shadow-lg" data-testid="start-card">
-                    <div className="text-2xs font-semibold uppercase tracking-wide text-muted">Recorded run · 5 robots</div>
-                    <h1 className="mt-1 text-xl font-semibold text-fg">{item?.title ?? hello.scenario.name}</h1>
-                    <p className="mt-2 text-sm leading-snug text-muted">{item?.desc}</p>
+                  <div className="w-[min(480px,92%)] rounded-[var(--radius-card)] border border-line bg-panel p-8 text-center shadow-lg" data-testid="start-card">
+                    <h1 className="text-xl font-semibold text-fg">Simulation (Demo)</h1>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">
+                      A fleet of 5 autonomous mobile robots shares one warehouse. Each robot plans its own route, negotiates narrow aisles with its peers and resolves deadlocks, with no central server. Watch positions, planned paths, aisle locks, battery and alerts in real time.
+                    </p>
+                    <p className="mt-3 text-xs text-muted">
+                      Demo mode runs by default. Switch modes anytime from the Simulation options.
+                    </p>
                     <button type="button" onClick={r.start} autoFocus
-                            className="mx-auto mt-5 flex h-11 items-center gap-2 rounded-[var(--radius-card)] bg-accent px-6 text-base font-semibold text-white hover:opacity-90">
+                            className="mx-auto mt-6 flex h-11 items-center gap-2 rounded-[var(--radius-card)] bg-accent px-6 text-base font-semibold text-white hover:opacity-90">
                       <Play size={18} /> Start simulation
                     </button>
+                    <p className="mt-4 text-2xs text-muted">Runs are captured from the real multi-robot simulation.</p>
                   </div>
                 </div>
               )}

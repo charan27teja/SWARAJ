@@ -22,9 +22,9 @@ async function positions(page) {
   return page.locator('g[role="button"][aria-label^="Robot "]').evaluateAll((els) => els.map((e) => e.getAttribute("transform")));
 }
 
-test("a recorded replay loads with no backend, shows 5 robots and REPLAY, and robots move", async ({ page }) => {
+test("a recorded replay loads with no backend, shows 5 robots and PEER-TO-PEER, and robots move", async ({ page }) => {
   await page.goto(`${URL}/?replay=demo`);
-  await expect(page.getByTestId("conn-status")).toHaveText(/REPLAY/, { timeout: 20000 });
+  await expect(page.getByTestId("conn-status")).toHaveText(/PEER-TO-PEER/, { timeout: 20000 });
   await expect(page.getByTestId("sim-controls")).toBeVisible();
   await expect(page.locator('g[role="button"][aria-label^="Robot "]')).toHaveCount(5);
   await page.getByRole("button", { name: "Start simulation" }).click();

@@ -81,7 +81,9 @@ export function useReplay(enabled: boolean) {
         const items = (d as { replays: ReplayItem[] }).replays;
         setList(items);
         const want = new URLSearchParams(window.location.search).get("replay");
-        setId(items.find((i) => i.id === want)?.id ?? items[0]?.id ?? null);
+        // Default to "demo" scenario if no URL parameter specified
+        const defaultId = want ? items.find((i) => i.id === want)?.id : items.find((i) => i.id === "demo")?.id ?? items[0]?.id;
+        setId(defaultId ?? null);
       })
       .catch((e) => setError(String(e)));
   }, [enabled, base]);

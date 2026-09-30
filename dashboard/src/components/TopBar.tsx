@@ -27,7 +27,7 @@ export function TopBar(p: Props) {
   const chips = faultChips(p.faults);
   const conn =
     p.status === "replay"
-      ? { cls: "bg-accent-soft text-accent", icon: <Radio size={13} />, text: "REPLAY" }
+      ? { cls: "bg-panel-2 text-muted", icon: <Radio size={13} />, text: "PEER-TO-PEER" }
       : p.status === "live"
       ? { cls: "bg-ok-soft text-ok", icon: <Radio size={13} />, text: "LIVE" }
       : p.status === "connecting"
