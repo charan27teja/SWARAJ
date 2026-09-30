@@ -152,12 +152,6 @@ systems on identical seeds):**
   well-implemented central planner that knows everything.
 - Duplicate task executions: 1 (ours) and 3 (B0) in the node-loss runs.
 
-## Baseline B1: stop-and-wait without deadlock supervisor
-
-B1 (`amr/baseline/b1.py`) is a simplified version of B0 that removes the active deadlock supervisor: robots still use FIFO zone reservations and stop-and-wait, but when a circular wait forms, no central process detects and breaks it. Result: **robots deadlock indefinitely**.
-
-Quick benchmark (2 seeds): B1 hits unresolved deadlocks in all 4 scenarios (medium/high × none/node_loss), timing out at 900s without completing tasks. In contrast, B0 and our system complete all tasks in ~2–6 min. This demonstrates that **deadlock detection and breaking is essential** for central planners operating in confined spaces, even without the overhead of distributed coordination.
-
 ## Deploy the demo
 
 Judges can watch **recorded runs of the real system** in the same dashboard from a public link.
