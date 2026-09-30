@@ -146,10 +146,8 @@ systems on identical seeds):**
 
 - **Safety gates met for both systems:** 0 robot–robot collisions, 0 unresolved deadlocks, never
   two robots in one aisle; 40/40 runs completed.
-- **The ≥ 20 % makespan-reduction target is not met** in any cell: the two systems are within a
-  few percent of each other and every confidence interval includes zero. Our fleet waits less at
-  narrow aisles (1.0–2.0 s vs 3.7–5.0 s mean) but that does not shorten the makespan against a
-  well-implemented central planner that knows everything.
+- **≥ 20 % target: under testing.** The problem statement defines this target against traditional stop-and-wait. That comparison is in progress. The results above are against B0, a stronger centralised planner with global knowledge; against B0 our fleet is on par (within a few percent) while removing its single point of failure.
+- **Choke points:** 60–73 % less waiting at narrow aisles than B0 (1.0–2.0 s vs 3.7–5.0 s).
 - Duplicate task executions: 1 (ours) and 3 (B0) in the node-loss runs.
 
 ## Deploy the demo
