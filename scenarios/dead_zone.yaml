@@ -1,0 +1,8 @@
+# Robots lose their network link while inside the middle-lane dead zone. Peers treat them as
+# unknown obstacles with inflated radius and fall back to degraded (conservative) lock rules.
+name: dead_zone
+map: maps/warehouse_a.yaml
+duration: 400
+generate: {robots: 5, congestion: medium, seed: 31}
+faults:
+  - {t: 0, action: dead_zone, rect: [10.0, 12.0, 20.0, 15.0], until: null}

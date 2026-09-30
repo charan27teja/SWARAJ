@@ -1,0 +1,19 @@
+# Five robots. R1 and R2 enter the same bidirectional narrow corridor (the W-E line through the
+# cross, (12..18, 8)) from opposite ends. Ricart-Agrawala serialises the arms; if both are already
+# inside their arm the hold-and-wait cycle is detected and the lower-priority robot backs out.
+# R3-R5 do ordinary pick/drop work elsewhere at the same time.
+name: head_on
+map: maps/warehouse_a.yaml
+duration: 180
+robots:
+  - {id: 1, cell: [10, 8], theta: 0.0, battery: 90}
+  - {id: 2, cell: [20, 8], theta: 3.14159, battery: 90}
+  - {id: 3, cell: [3, 1], theta: 1.5708, battery: 85}
+  - {id: 4, cell: [26, 1], theta: 1.5708, battery: 80}
+  - {id: 5, cell: [12, 23], theta: -1.5708, battery: 75}
+tasks:
+  - {id: 1, pick: [17, 8], drop: [26, 23], release: 0, assign: 1}
+  - {id: 2, pick: [13, 8], drop: [6, 23], release: 0, assign: 2}
+  - {id: 3, pick: [5, 7], drop: [6, 23], release: 0}
+  - {id: 4, pick: [25, 10], drop: [26, 23], release: 0}
+  - {id: 5, pick: [22, 16], drop: [14, 23], release: 0}

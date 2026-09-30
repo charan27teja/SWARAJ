@@ -1,0 +1,10 @@
+# Robot 2 is killed while inside a narrow aisle. Its lease expires, the aisle becomes
+# occupied-unknown (lidar sees the body), its task is re-auctioned; an operator removes the
+# body later and an approaching robot's lidar confirms the aisle clear.
+name: node_loss
+map: maps/warehouse_a.yaml
+duration: 400
+generate: {robots: 5, congestion: medium, seed: 21}
+faults:
+  - {t: 8, action: kill, robot: 2, when: in_aisle}
+  - {t: 60, action: remove_body, robot: 2}

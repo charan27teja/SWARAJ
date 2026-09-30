@@ -1,0 +1,8 @@
+# A pallet is dropped in aisle A13 (bottom block, between two pick stations) mid-run. The robot that sees it with its own
+# lidar publishes a BlockageEvent (TTL); peers add it to their cost overlay and re-route / re-bid.
+name: blockage
+map: maps/warehouse_a.yaml
+duration: 400
+generate: {robots: 5, congestion: medium, seed: 11}
+blockages:
+  - {t: 12, cell: [13, 17], until: 150}

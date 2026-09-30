@@ -1,0 +1,28 @@
+{
+ "replays": [
+  {
+   "id": "demo",
+   "file": "demo.json.gz",
+   "title": "demo",
+   "desc": "5 robots on overlapping pick/drop traffic"
+  },
+  {
+   "id": "circular_wait",
+   "file": "circular_wait.json.gz",
+   "title": "circular wait",
+   "desc": "4 robots forced into a cycle at the narrow cross; the lowest priority yields"
+  },
+  {
+   "id": "blockage",
+   "file": "blockage.json.gz",
+   "title": "blockage",
+   "desc": "a pallet is dropped in aisle A13; robots detect it with lidar and re-route"
+  },
+  {
+   "id": "node_loss",
+   "file": "node_loss.json.gz",
+   "title": "node loss",
+   "desc": "R2 is killed inside an aisle: lease expiry, occupied-unknown, task re-auction"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+# Warehouse A: 30 m x 25 m, 1 m cells.
+#   '#' wall / rack     '.' free floor      'P' pick station (inside an aisle)
+#   'D' drop station    'C' charging dock   'B' passing bay / parking pocket
+# 3 m main lanes (rows 2-4, 12-14, 20-22), 2 m cross lanes. Single-width picking aisles
+# (1 m < 2 robot diameters) are extracted automatically as critical sections and are one-way
+# (enter at the top, exit at the bottom). The narrow bidirectional 4-way cross centred on
+# (15,8) can produce a circular wait.
+name: warehouse_a
+cell_size: 1.0
+one_way_aisles: true
+grid: |
+  ##############################
+  ###C##B##C##B#C##C###B#C##C###
+  #............................#
+  #............................#
+  #............................#
+  #..##.##.#..###.###..#.##.#..#
+  #..B#.##.#..B##.##B..#.##.#..#
+  #..##P##P#..###.###..#P##P#..#
+  #..##.##.#...........#.##.#..#
+  #..##.##.#..###.###..#.##.#..#
+  #..B#P##P#..B##.##B..#P##P#..#
+  #..##.##.#..###.###..#.##.#..#
+  #............................#
+  #............................#
+  #............................#
+  #..##.##.#..#.##.##..#.##.#..#
+  #..B#P##P#..#P##P#B..#P##P#..#
+  #..##.##.#..#.##.##..#.##.#..#
+  #..B#P##P#..#P##P#B..#P##P#..#
+  #..##.##.#..#.##.##..#.##.#..#
+  #............................#
+  #............................#
+  #............................#
+  ###B##D##D##B#D##D###B#D##D###
+  ##############################

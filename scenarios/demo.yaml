@@ -1,0 +1,5 @@
+# Default live demo (random_overlap): 5 robots on overlapping pick/drop traffic.
+name: demo
+map: maps/warehouse_a.yaml
+duration: 3600
+generate: {robots: 5, congestion: low, seed: 7}

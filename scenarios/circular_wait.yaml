@@ -1,0 +1,21 @@
+# Five robots. R1-R4 approach the narrow 4-way cross from all four arms, each needing the arm held
+# by the next robot clockwise: N->E, E->S, S->W, W->N. L3 reservation look-ahead is disabled for
+# this scenario (config override) so they are *forced* into the hold-and-wait cycle; the L2
+# wait-for graph detects it and the lowest-priority robot backs off to a passing bay.
+# R5 does ordinary pick/drop work in the left block meanwhile.
+name: circular_wait
+map: maps/warehouse_a.yaml
+duration: 180
+config: {use_reservations: false}
+robots:
+  - {id: 1, cell: [15, 3], theta: 1.5708, battery: 90}
+  - {id: 2, cell: [20, 8], theta: 3.14159, battery: 90}
+  - {id: 3, cell: [15, 13], theta: -1.5708, battery: 90}
+  - {id: 4, cell: [10, 8], theta: 0.0, battery: 90}
+  - {id: 5, cell: [3, 16], theta: 0.0, battery: 90}
+tasks:
+  - {id: 1, pick: [17, 8], drop: [23, 23], release: 0, assign: 1}
+  - {id: 2, pick: [15, 10], drop: [17, 23], release: 0, assign: 2}
+  - {id: 3, pick: [13, 8], drop: [9, 23], release: 0, assign: 3}
+  - {id: 4, pick: [15, 6], drop: [6, 23], release: 0, assign: 4}
+  - {id: 5, pick: [5, 18], drop: [6, 23], release: 0, assign: 5}

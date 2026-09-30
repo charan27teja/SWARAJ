@@ -1,0 +1,9 @@
+# The fleet splits into two network islands for 30 s, then heals. Degraded mode (canonical-end
+# entry + whole-aisle lidar check) guarantees two islands never occupy the same aisle.
+name: partition
+map: maps/warehouse_a.yaml
+duration: 400
+generate: {robots: 5, congestion: medium, seed: 41}
+faults:
+  - {t: 15, action: partition, groups: [[1, 2, 3], [4, 5]]}
+  - {t: 45, action: heal}
