@@ -152,7 +152,7 @@ systems on identical seeds):**
   well-implemented central planner that knows everything.
 - Duplicate task executions: 1 (ours) and 3 (B0) in the node-loss runs.
 
-## Deploy the demo (static replay site, no backend)
+## Deploy the demo
 
 Judges can watch **recorded runs of the real system** in the same dashboard from a public link.
 The site opens in **Demo mode by default**, showing recorded 5-robot runs (`demo`, `circular_wait`,
@@ -171,19 +171,3 @@ Deploy to Vercel: import the repo with **Root Directory = `dashboard`** (setting
 upload `dashboard/dist`.
 
 Re-record the runs (starts the live system; ~6 min): `python -m amr.runtime.record_replays`.
-
-## Repository layout
-
-```
-amr/core       map + section/bay/mouth extraction, config, scenarios
-amr/agent      the pure robot agent (all layers L1-L4)
-amr/transport  reliable events, fault shim, UDP transport
-amr/world      physics stand-in: kinematics, lidar, collisions, blockages, battery
-amr/runtime    fast (lockstep) and live (multi-process) runtimes, launcher, guided demo
-amr/baseline   B0 centralised stop-and-wait comparator
-amr/bench      metrics recorder, sweep, report, snapshots
-amr/bridge     passive dashboard bridge
-amr/faults.py  fault-injection CLI
-dashboard/     React + TypeScript console (+ Playwright tests)
-maps/ scenarios/ tests/ scripts/ docs/
-```
