@@ -59,5 +59,10 @@ test("Start button: robots move and the KPI strip appears; end shows Run complet
   await slider.press("End");
   await expect(page.getByTestId("complete-card")).toBeVisible({ timeout: 5000 });
   await page.getByRole("button", { name: "Try another scenario" }).click();
-  await expect(page.getByTestId("start-card")).toBeVisible();              // back to pre-Start
+  // the Start card shows only once per page load: the next scenario plays straight away
+  await expect(page.getByTestId("complete-card")).toBeHidden({ timeout: 10000 });
+  await expect(page.getByTestId("start-card")).toBeHidden();
+  const t0 = Number(await slider.inputValue());
+  await page.waitForTimeout(1500);
+  expect(Number(await slider.inputValue())).toBeGreaterThan(t0);
 });

@@ -72,6 +72,7 @@ export function useReplay(enabled: boolean) {
   const prefix = useRef<number[]>([]);
   const shown = useRef(-1);
   const tRef = useRef(0);
+  const introDone = useRef(false);   // true after the first Start: the Start card shows only once per page load
 
   // the list of recordings
   useEffect(() => {
@@ -128,11 +129,11 @@ export function useReplay(enabled: boolean) {
         setT(0);
         setHello(rec.hello);
         render(0);
-        setPlaying(false);            // pre-Start: first frame shown, waiting for Start
-        setStarted(false);
-        const u = new URL(window.location.href);
-        u.searchParams.set("replay", id);
-        window.history.replaceState(null, "", u);
+        // First visit: first frame shown, waiting for the Start card. Once the user has started
+        // once, switching modes plays the new one straight away (no Start card again).
+        setPlaying(introDone.current);
+        setStarted(introDone.current);
+        // the chosen mode is not written into the URL, so a reload always opens the demo
       })
       .catch((e) => !cancelled && setError(String(e)));
     return () => {
@@ -176,6 +177,7 @@ export function useReplay(enabled: boolean) {
   }, [duration, seek]);
 
   const start = useCallback(() => {
+    introDone.current = true;
     setStarted(true);
     play(true);
   }, [play]);
@@ -185,8 +187,9 @@ export function useReplay(enabled: boolean) {
     setPlaying(true);
   }, [seek]);
   const select = useCallback((nid: string) => {
-    setStarted(false);                // changing scenario returns to the pre-Start state
-    setPlaying(false);
+    // after the first Start, switching modes keeps playing; before it, stay on the Start card
+    setStarted(introDone.current);
+    setPlaying(introDone.current);
     if (nid === id) {
       seek(0);
     } else {
@@ -200,5 +203,5 @@ export function useReplay(enabled: boolean) {
   }), [list, id, select, playing, play, speed, t, duration, seek, error, started, ended, start, restart]);
 
   const status: ConnStatus = hello ? "replay" : "connecting";
-  return { status, hello, state, alerts, attempt: 0, lastMsg: 0, url: "recorded replay", replay };
+  return { status, hello, state, alerts, attempt: 0, lastMsg: 0, url: "", replay };
 }
